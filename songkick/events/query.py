@@ -3,8 +3,8 @@ from songkick.query import SongkickQuerySet
 
 
 class EventQuerySet(SongkickQuerySet):
-    "I query songkick and iterate the results back to you."
-
+    "Events-specific query backend"
+    
     RESPONSE_CLASS = SongkickEvent
     RESPONSE_ENCLOSURE = 'event'
     

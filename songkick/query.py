@@ -39,7 +39,7 @@ class SongkickQuerySet(object):
         self._connection = connection
 
     @classmethod
-    def _parse_response(cls, event_data):
+    def parse_songkick_data(cls, event_data):
         "Parse event data, return ``SongkickResultPage``."
         
         try:
@@ -71,7 +71,13 @@ class SongkickQuerySet(object):
         raise NotImplementedError
 
     def query(self, **query_kwargs):
-        "Query Songkick"
+        """Query Songkick, load results, return data page.
+
+        :param **query_kwargs: All keyword arguments to be converted
+                               into a Songkick request.
+        :rtype: :class:`SongkickResultPage` containing pagination data
+                and results
+        """
 
         # update query args
         self._query = query_kwargs
@@ -84,5 +90,5 @@ class SongkickQuerySet(object):
         sk_data = self._connection._make_request(url)
 
         # parse response
-        return self._parse_response(sk_data)
+        return self.parse_songkick_data(sk_data)
 

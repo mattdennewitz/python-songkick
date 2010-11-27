@@ -7,6 +7,13 @@ class SongkickArtistIdentifier(SongkickModel):
 
     :param data_uri: Songkick data outlet URI
     :param musicbrainz_id: A possible MusicBrainz id for this artist
+
+    .. note:: Songkick stores multiple identifiers for artists
+              with non-unique names. For example, Songkick stores
+              seven possible MusicBrainz ids for the swedish pop duo
+              "jj", because there are at least seven acts releasing
+              under that name. It's up to the client to store
+              and match the correct MusicBrainz id.
     """
     
     data_uri = fields.Field(mapping='href')
@@ -19,7 +26,7 @@ class SongkickArtist(SongkickModel):
     :param id: Songkick id
     :param display_name: Artist name, eg, "Neil Young".
     :param songkick_uri: Songkick artist detail uri
-    :param identifiers: A list of :ref:`SongkickArtistIdentifier` objects
+    :param identifiers: A list of :class:`SongkickArtistIdentifier` objects
     :param billing: Event billing status. 'headline' or 'support'.
     :param billing_index: Numerical position on the bill
     """
@@ -65,7 +72,7 @@ class SongkickLocation(SongkickModel):
 
 
 class SongkickMetroArea(SongkickModel):
-    """A metro area, used to describe where a :ref:`SongkickVenue`
+    """A metro area, used to describe where a :class:`SongkickVenue`
     is located.
 
     :param id: Songkick id
@@ -85,7 +92,7 @@ class SongkickVenue(SongkickModel):
     :param display_name: Venue name
     :param latitude: Venue latitude
     :param longitude: Venue longitude
-    :param metro_area: The :ref:`SongkickMetroArea` describing this
+    :param metro_area: The :class:`SongkickMetroArea` describing this
                        venue's location
     :param uri: Songkick venue data uri
     """
@@ -118,9 +125,9 @@ class SongkickEvent(SongkickModel):
     :param id: Songkick id
     :param status: Event status. Normally 'ok', sometimes 'cancelled'.
     :param event_type: Event type. 'concert' or 'festival'.
-    :param venue: :ref:`SongkickVenue` object
-    :param location: :ref:`SongkickLocation` object
-    :param artists: Collection of artists (via :ref:`SongkickArtist`)
+    :param venue: :class:`SongkickVenue` object
+    :param location: :class:`SongkickLocation` object
+    :param artists: Collection of artists (via :class:`SongkickArtist`)
                     performing at this event.
     :param display_name: Event title
     :param popularity: Popularity measurement for this event

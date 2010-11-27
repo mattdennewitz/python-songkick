@@ -23,7 +23,7 @@ class SongkickSetlistArtist(SongkickModel):
     :param identifiers: A list of :ref:`SongkickArtistIdentifier` objects
 
     .. note:: Artist representations are not consistent between resources,
-    so we have to redefine a simpler artist model for setlists.
+              so we have to redefine a simpler artist model for setlists.
     """
 
     id = fields.Field()
@@ -37,10 +37,10 @@ class SongkickSetlist(SongkickModel):
 
     :param id: Songkick setlist id
     :param display_name: Setlist name
-    :param artist: :ref:`SongkickSetlistArtist` object representing the
+    :param artist: :class:`SongkickSetlistArtist` object representing the
                    performing artist
     :param setlist: Songs or pieces performed in this set, as a list of
-                    :ref:`SongkickSetlistItem` objects.
+                    :class:`SongkickSetlistItem` objects.
     """
 
     id = fields.Field()

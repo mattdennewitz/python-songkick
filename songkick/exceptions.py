@@ -1,0 +1,2 @@
+class SongkickDecodeError(Exception):
+    pass

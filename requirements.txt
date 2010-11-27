@@ -1,0 +1,3 @@
+sphinx
+httplib2
+python-dateutil

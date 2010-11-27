@@ -1,5 +1,5 @@
 from songkick.base import SongkickModel
-from songkick.fields import *
+from songkick import fields
 
 
 class SongkickArtistIdentifier(SongkickModel):
@@ -9,8 +9,8 @@ class SongkickArtistIdentifier(SongkickModel):
     :param musicbrainz_id: A possible MusicBrainz id for this artist
     """
     
-    data_uri = Field(mapping='href')
-    musicbrainz_id = Field(mapping='mbid')
+    data_uri = fields.Field(mapping='href')
+    musicbrainz_id = fields.Field(mapping='mbid')
 
 
 class SongkickArtist(SongkickModel):
@@ -24,13 +24,13 @@ class SongkickArtist(SongkickModel):
     :param billing_index: Numerical position on the bill
     """
     
-    id = Field()
-    display_name = Field(mapping='displayName')
-    songkick_uri = Field(mapping='artist__uri')
-    identifiers = ListField(ObjectField(SongkickArtistIdentifier),
-                            mapping='artist__identifier')
-    billing = Field()
-    billing_index = Field(mapping='billingIndex')
+    id = fields.Field()
+    display_name = fields.Field(mapping='displayName')
+    songkick_uri = fields.Field(mapping='artist__uri')
+    identifiers = fields.ListField(fields.ObjectField(SongkickArtistIdentifier),
+                                   mapping='artist__identifier')
+    billing = fields.Field()
+    billing_index = fields.Field(mapping='billingIndex')
 
     def __repr__(self):
         return self.display_name.encode('utf-8')
@@ -45,22 +45,23 @@ class SongkickEventDate(SongkickModel):
     :param datetime: ``datetime`` object with timezone info. Sometimes available.
     """
     
-    date = DateField()
-    time = TimeField()
-    datetime = DateTimeField()
+    date = fields.DateField()
+    time = fields.TimeField()
+    datetime = fields.DateTimeField()
 
 
 class SongkickLocation(SongkickModel):
     """Overview of show location, not including venue details.
 
-    :param city: City name. Often sent as City, State, Country, but not guaranteed.
+    :param city: City name. Often sent as City, State, Country,
+                 but no particular format is enforced.
     :param latitude: Latitude
     :param longitude: Longitude
     """
 
-    city = Field()
-    latitude = Field(mapping='lat')
-    longitude = Field(mapping='lng')
+    city = fields.Field()
+    latitude = fields.Field(mapping='lat')
+    longitude = fields.Field(mapping='lng')
 
 
 class SongkickMetroArea(SongkickModel):
@@ -72,9 +73,9 @@ class SongkickMetroArea(SongkickModel):
     :param country: Country name
     """
 
-    id = Field()
-    display_name = Field(mapping='displayName')
-    country = Field(mapping='country__displayName')
+    id = fields.Field()
+    display_name = fields.Field(mapping='displayName')
+    country = fields.Field(mapping='country__displayName')
 
 
 class SongkickVenue(SongkickModel):
@@ -84,17 +85,18 @@ class SongkickVenue(SongkickModel):
     :param display_name: Venue name
     :param latitude: Venue latitude
     :param longitude: Venue longitude
-    :param metro_area: The :ref:`SongkickMetroArea` describing where this venue's location
+    :param metro_area: The :ref:`SongkickMetroArea` describing this
+                       venue's location
     :param uri: Songkick venue data uri
     """
     
-    id = Field()
-    display_name = Field(mapping='displayName')
-    latitude = Field(mapping='lat')
-    longitude = Field(mapping='lng')
-    metro_area = ObjectField(SongkickMetroArea,
-                             mapping='metroArea')
-    uri = Field()
+    id = fields.Field()
+    display_name = fields.Field(mapping='displayName')
+    latitude = fields.Field(mapping='lat')
+    longitude = fields.Field(mapping='lng')
+    metro_area = fields.ObjectField(SongkickMetroArea,
+                                    mapping='metroArea')
+    uri = fields.Field()
 
     def __repr__(self):
         return self.display_name.encode('utf-8')
@@ -107,7 +109,7 @@ class SongkickEventSeries(SongkickModel):
     :param display_name: Series name
     """
 
-    display_name = Field(mapping='displayName')
+    display_name = fields.Field(mapping='displayName')
 
 
 class SongkickEvent(SongkickModel):
@@ -129,19 +131,19 @@ class SongkickEvent(SongkickModel):
     :param uri: Songkick data uri
     """
     
-    id = Field()
-    status = Field()
-    event_type = Field(mapping='type')
-    series = ObjectField(SongkickEventSeries)
-    venue = ObjectField(SongkickVenue)
-    location = ObjectField(SongkickLocation)
-    artists = ListField(ObjectField(SongkickArtist),
-                        mapping='performance')
-    display_name = Field(mapping='displayName')
-    popularity = DecimalField()
-    event_start = ObjectField(SongkickEventDate, mapping='start')
-    event_end = ObjectField(SongkickEventDate, mapping='end')
-    uri = Field()
+    id = fields.Field()
+    status = fields.Field()
+    event_type = fields.Field(mapping='type')
+    series = fields.ObjectField(SongkickEventSeries)
+    venue = fields.ObjectField(SongkickVenue)
+    location = fields.ObjectField(SongkickLocation)
+    artists = fields.ListField(fields.ObjectField(SongkickArtist),
+                               mapping='performance')
+    display_name = fields.Field(mapping='displayName')
+    popularity = fields.DecimalField()
+    event_start = fields.ObjectField(SongkickEventDate, mapping='start')
+    event_end = fields.ObjectField(SongkickEventDate, mapping='end')
+    uri = fields.Field()
     
     def __repr__(self):
         return self.display_name.encode('utf-8')

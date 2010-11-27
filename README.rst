@@ -36,6 +36,10 @@ Using this wrapper is fairly straight-forward: ::
 	print event.location.city	# New York, NY, US
 	print event.venue.display_name	# Arlene's Grocery
 
+.. note:: Songkick's API documentation is fairly out of date. I've provided a few response
+          examples in the ``data`` dir.
+	  	  
+
 Getting an API key
 ------------------
 

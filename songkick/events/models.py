@@ -57,18 +57,37 @@ class SongkickLocation(SongkickModel):
     :param latitude: Latitude
     :param longitude: Longitude
     """
+
     city = Field()
     latitude = Field(mapping='lat')
     longitude = Field(mapping='lng')
 
 
 class SongkickMetroArea(SongkickModel):
+    """A metro area, used to describe where a :ref:`SongkickVenue`
+    is located.
+
+    :param id: Songkick id
+    :param display_name: Metro area name
+    :param country: Country name
+    """
+
     id = Field()
     display_name = Field(mapping='displayName')
     country = Field(mapping='country__displayName')
 
 
 class SongkickVenue(SongkickModel):
+    """Event venue.
+
+    :param id: Songkick id
+    :param display_name: Venue name
+    :param latitude: Venue latitude
+    :param longitude: Venue longitude
+    :param metro_area: The :ref:`SongkickMetroArea` describing where this venue's location
+    :param uri: Songkick venue data uri
+    """
+    
     id = Field()
     display_name = Field(mapping='displayName')
     latitude = Field(mapping='lat')
@@ -82,10 +101,34 @@ class SongkickVenue(SongkickModel):
 
 
 class SongkickEventSeries(SongkickModel):
+    """Serial show wrapper name. Useful for describing long-running
+    events, like festivals.
+
+    :param display_name: Series name
+    """
+
     display_name = Field(mapping='displayName')
 
 
 class SongkickEvent(SongkickModel):
+    """An event tracked by Songkick.
+
+    :param id: Songkick id
+    :param status: Event status. Normally 'ok', sometimes 'cancelled'.
+    :param event_type: Event type. 'concert' or 'festival'.
+    :param venue: :ref:`SongkickVenue` object
+    :param location: :ref:`SongkickLocation` object
+    :param artists: Collection of artists (via :ref:`SongkickArtist`)
+                    performing at this event.
+    :param display_name: Event title
+    :param popularity: Popularity measurement for this event
+    :param event_start: Start date and (sometimes) time for this event
+    :param event_end: End date and (sometimes) time for this event.
+                      Not often populated, and normally only seen
+                      with festivals.
+    :param uri: Songkick data uri
+    """
+    
     id = Field()
     status = Field()
     event_type = Field(mapping='type')

@@ -36,6 +36,11 @@ Using this wrapper is fairly straight-forward: ::
 	print event.location.city	# New York, NY, US
 	print event.venue.display_name	# Arlene's Grocery
 
+Getting an API key
+------------------
+
+Visit http://www.songkick.com/api_key_requests/new to request an API key.
+
 Requirements
 ------------
 

@@ -3,11 +3,27 @@ from songkick.fields import *
 
 
 class SongkickArtistIdentifier(SongkickModel):
+    """Universal artist identification.
+
+    :param data_uri: Songkick data outlet URI
+    :param musicbrainz_id: A possible MusicBrainz id for this artist
+    """
+    
     data_uri = Field(mapping='href')
     musicbrainz_id = Field(mapping='mbid')
 
 
 class SongkickArtist(SongkickModel):
+    """A Songkick-described artist.
+
+    :param id: Songkick id
+    :param display_name: Artist name, eg, "Neil Young".
+    :param songkick_uri: Songkick artist detail uri
+    :param identifiers: A list of :ref:`SongkickArtistIdentifier` objects
+    :param billing: Event billing status. 'headline' or 'support'.
+    :param billing_index: Numerical position on the bill
+    """
+    
     id = Field()
     display_name = Field(mapping='displayName')
     songkick_uri = Field(mapping='artist__uri')
@@ -21,12 +37,26 @@ class SongkickArtist(SongkickModel):
 
 
 class SongkickEventDate(SongkickModel):
+    """Known times for an event. Used to detail the start
+    and, when available, end of a certain event.
+
+    :param date: ``date`` object representing event date. Normally available.
+    :param time: ``time`` object representing event time. Sometimes available.
+    :param datetime: ``datetime`` object with timezone info. Sometimes available.
+    """
+    
     date = DateField()
     time = TimeField()
     datetime = DateTimeField()
 
 
 class SongkickLocation(SongkickModel):
+    """Overview of show location, not including venue details.
+
+    :param city: City name. Often sent as City, State, Country, but not guaranteed.
+    :param latitude: Latitude
+    :param longitude: Longitude
+    """
     city = Field()
     latitude = Field(mapping='lat')
     longitude = Field(mapping='lng')

@@ -17,7 +17,7 @@ setup(
     url='http://github.com/mattdennewitz/python-songkick/tree/master',
     packages=find_packages(),
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',

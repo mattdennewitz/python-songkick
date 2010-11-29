@@ -27,7 +27,7 @@ class Songkick(object):
     def _make_request(self, url, method='GET', body=None, headers=None):
         """Make an HTTP request.
 
-        This could stand to be a little more 'complete', but Songkick's API
+        This could stand to be a little more robust, but Songkick's API
         is very straight-forward: 200 is a success, anything else is wrong.
         """
 
@@ -48,11 +48,11 @@ class Songkick(object):
         # insert API key
         request_args['apikey'] = self.api_key
 
-        # construct the complete api resource url
+        # construct the complete api resource url, minus args
         url = urlparse.urljoin(Songkick.API_ENDPOINT, api_path)
 
-        # break down the url into its components, inject the query string,
-        # and recombine the url
+        # break down the url into its components, inject args
+        # as query string and recombine the url
         url_parts = list(urlparse.urlparse(url))
         url_parts[4] = urllib.urlencode(request_args)
         url = urlparse.urlunparse(url_parts)

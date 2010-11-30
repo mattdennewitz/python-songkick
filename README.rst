@@ -6,6 +6,11 @@ Wrapping Songkick's API since 2010.
 
 More documentation forthcoming, but check out the example to get started.
 
+Getting an API key
+------------------
+
+Visit http://www.songkick.com/api_key_requests/new to request an API key.
+
 Usage
 -----
 
@@ -72,11 +77,6 @@ event id.
 .. note:: Songkick's API documentation is fairly out of date. I've provided a few response
           examples in the ``data`` dir.
 	  	  
-
-Getting an API key
-------------------
-
-Visit http://www.songkick.com/api_key_requests/new to request an API key.
 
 Requirements
 ------------

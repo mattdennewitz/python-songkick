@@ -45,7 +45,7 @@ Pagination is handled with the following parameters:
 - ``per_page``, the number of objects per page. 50 max.
 - ``page``, the page number you'd like.
 
-See :ref:`todo` for pagination plans.
+See TODO for pagination plans.
 
 ::
    

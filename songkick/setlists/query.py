@@ -3,8 +3,8 @@ from songkick.setlists.models import SongkickSetlist
 
 
 class SetlistQuerySet(SongkickQuerySet):
-    RESPONSE_CLASS = SongkickSetlist
-    RESPONSE_ENCLOSURE = 'setlist'
+    ResponseClass = SongkickSetlist
+    ResponseEnclosure = 'setlist'
     
     def _get_api_path(self):
         "Generate the API resource path"

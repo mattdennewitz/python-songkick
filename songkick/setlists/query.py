@@ -19,7 +19,7 @@ class SetlistQuery(SongkickQuery):
         responds to ids. There is no need to return an iterable.
         """
         
-        results = self.query(event_id=event_id)
+        results = self.query(event_id=id)
         if len(results) > 0:
             return results[0]
 

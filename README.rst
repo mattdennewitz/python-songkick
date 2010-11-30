@@ -40,6 +40,13 @@ Event querying supports the following parameters:
 - ``min_date``, the earliest possible event date. Given as ``date``.
 - ``max_date``, the latest possible event date. Given as ``date``.
 
+Pagination is handled with the following parameters:
+
+- ``per_page``, the number of objects per page. 50 max.
+- ``page``, the page number you'd like.
+
+See :ref:`todo` for pagination plans.
+
 ::
    
     # query for 10 coltrane motion events, no earlier than 1/1/2009
@@ -87,6 +94,9 @@ Requirements
 - python-dateutil
 
 All covered in ``requirements.txt``.
+
+
+.. _todo:
 
 TODO
 ----

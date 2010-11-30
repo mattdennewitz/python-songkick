@@ -31,7 +31,7 @@ class SongkickResultPage(object):
         return self.page_number > 1
 
 
-class SongkickQuerySet(object):
+class SongkickQuery(object):
 
     def __init__(self, connection):
         self._query = {}

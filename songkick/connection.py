@@ -3,9 +3,9 @@ import urlparse
 
 import httplib2
 
-from songkick.events.query import EventQuerySet
+from songkick.events.query import EventQuery
 from songkick.exceptions import SongkickRequestError
-from songkick.setlists.query import SetlistQuerySet
+from songkick.setlists.query import SetlistQuery
 
 
 class Songkick(object):
@@ -20,19 +20,13 @@ class Songkick(object):
         # http client for talking with songkick
         self._http = httplib2.Http('.songkick_cache')
 
-        # set up search providers
-        self.events = EventQuerySet(self)
-        self.setlists = SetlistQuerySet(self)
+    @property
+    def events(self):
+        return EventQuery(self)
 
-    @classmethod
-    def events(cls):
-        self = cls()
-        return EventQuerySet(self)
-
-    @classmethod
-    def setlists(cls):
-        self = cls()
-        return SetlistQuerySet(self)
+    @property
+    def setlists(self):
+        return SetlistQuery(self)
 
     def _make_request(self, url, method='GET', body=None, headers=None):
         """Make an HTTP request.

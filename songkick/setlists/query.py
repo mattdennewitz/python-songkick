@@ -1,8 +1,8 @@
-from songkick.query import SongkickQuerySet
+from songkick.query import SongkickQuery
 from songkick.setlists.models import SongkickSetlist
 
 
-class SetlistQuerySet(SongkickQuerySet):
+class SetlistQuery(SongkickQuery):
     ResponseClass = SongkickSetlist
     ResponseEnclosure = 'setlist'
     

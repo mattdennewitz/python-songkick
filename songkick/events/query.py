@@ -1,8 +1,8 @@
 from songkick.events.models import SongkickEvent
-from songkick.query import SongkickQuerySet
+from songkick.query import SongkickQuery
 
 
-class EventQuerySet(SongkickQuerySet):
+class EventQuery(SongkickQuery):
     "Events-specific query backend"
     
     ResponseClass = SongkickEvent

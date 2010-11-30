@@ -8,7 +8,7 @@ class EventQuery(SongkickQuery):
     ResponseClass = SongkickEvent
     ResponseEnclosure = 'event'
     
-    def _get_api_path(self):
+    def get_api_path(self):
         "Generate the API resource path"
 
         if 'musicbrainz_id' in self._query:

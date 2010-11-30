@@ -8,27 +8,15 @@ from songkick.exceptions import SongkickRequestError
 from songkick.setlists.query import SetlistQuery
 
 
-class Songkick(object):
-    "Interface to Songkick services."
+class SongkickConnection(object):
 
-    API_ENDPOINT = 'http://api.songkick.com/api/3.0/'
-
+    ApiBase = 'http://api.songkick.com/api/3.0/'
+    
     def __init__(self, api_key):
-        
         self.api_key = api_key
-        
-        # http client for talking with songkick
         self._http = httplib2.Http('.songkick_cache')
 
-    @property
-    def events(self):
-        return EventQuery(self)
-
-    @property
-    def setlists(self):
-        return SetlistQuery(self)
-
-    def _make_request(self, url, method='GET', body=None, headers=None):
+    def make_request(self, url, method='GET', body=None, headers=None):
         """Make an HTTP request.
 
         This could stand to be a little more robust, but Songkick's API
@@ -46,14 +34,14 @@ class Songkick(object):
                                         response.reason))
         return content
 
-    def _build_sk_url(self, api_path, request_args):
+    def build_songkick_url(self, api_path, request_args):
         "Assemble the Songkick URL"
 
         # insert API key
         request_args['apikey'] = self.api_key
 
         # construct the complete api resource url, minus args
-        url = urlparse.urljoin(Songkick.API_ENDPOINT, api_path)
+        url = urlparse.urljoin(SongkickConnection.ApiBase, api_path)
 
         # break down the url into its components, inject args
         # as query string and recombine the url
@@ -62,3 +50,14 @@ class Songkick(object):
         url = urlparse.urlunparse(url_parts)
         
         return url
+
+    @property
+    def events(self):
+        return EventQuery(self)
+
+    @property
+    def setlists(self):
+        return SetlistQuery(self)
+
+
+

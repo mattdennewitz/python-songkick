@@ -24,6 +24,16 @@ class Songkick(object):
         self.events = EventQuerySet(self)
         self.setlists = SetlistQuerySet(self)
 
+    @classmethod
+    def events(cls):
+        self = cls()
+        return EventQuerySet(self)
+
+    @classmethod
+    def setlists(cls):
+        self = cls()
+        return SetlistQuerySet(self)
+
     def _make_request(self, url, method='GET', body=None, headers=None):
         """Make an HTTP request.
 

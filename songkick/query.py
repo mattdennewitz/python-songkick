@@ -50,22 +50,17 @@ class SongkickQuerySet(object):
 
         # parse results
         page = data['resultsPage']
-        page_number = page.get('page')
-        per_page = page.get('perPage', 50)
-        total_entries = page.get('totalEntries', 0)
         results_wrapper = page.get('results')
 
-        if not cls.RESPONSE_ENCLOSURE in results_wrapper:
+        if not cls.ResponseEnclosure in results_wrapper:
             raise SongkickDecodeError("%s not found in results page." % \
-                                          cls.RESPONSE_ENCLOSURE)
-        object_list = results_wrapper.get(cls.RESPONSE_ENCLOSURE)
+                                          cls.ResponseEnclosure)
 
-        # generate page of results
-        return SongkickResultPage(object_list=object_list,
-                                  object_count = total_entries,
-                                  result_class=cls.RESPONSE_CLASS,
-                                  page_number=page_number,
-                                  per_page=per_page)
+        # pull objects from response
+        object_list = results_wrapper.get(cls.ResponseEnclosure)
+
+        for obj in object_list:
+            yield cls.ResponseClass._from_json(obj)
 
     def _get_api_path(self):        
         raise NotImplementedError

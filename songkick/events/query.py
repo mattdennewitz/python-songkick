@@ -5,8 +5,8 @@ from songkick.query import SongkickQuerySet
 class EventQuerySet(SongkickQuerySet):
     "Events-specific query backend"
     
-    RESPONSE_CLASS = SongkickEvent
-    RESPONSE_ENCLOSURE = 'event'
+    ResponseClass = SongkickEvent
+    ResponseEnclosure = 'event'
     
     def _get_api_path(self):
         "Generate the API resource path"

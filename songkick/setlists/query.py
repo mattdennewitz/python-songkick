@@ -12,3 +12,14 @@ class SetlistQuery(SongkickQuery):
 
         return 'events/%s/setlists.json' % self._query.pop('event_id')
 
+    def get(self, id):
+        """Return a setlist with the given ``id``.
+
+        This method is a bit of a hack, but Songkick's setlist API only
+        responds to ids. There is no need to return an iterable.
+        """
+        
+        results = self.query(event_id=event_id)
+        if len(results) > 0:
+            return results[0]
+

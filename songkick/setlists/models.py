@@ -46,7 +46,9 @@ class SongkickSetlist(SongkickModel):
     id = fields.Field()
     display_name = fields.Field(mapping='displayName')
     artist = fields.ObjectField(SongkickSetlistArtist)
-    setlist = fields.ListField(fields.ObjectField(SongkickSetlistItem),
-                               mapping='setlistItem')    
+    setlist_items = fields.ListField(fields.ObjectField(SongkickSetlistItem),
+                                     mapping='setlistItem')    
 
+    def __repr__(self):
+        return self.display_name.encode('utf-8')
 

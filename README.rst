@@ -14,7 +14,7 @@ Visit http://www.songkick.com/api_key_requests/new to request an API key.
 Usage
 -----
 
-Using this wrapper is fairly straight-forward. Right now, events and
+Using this wrapper is fairly straight-forward. Right now, events, gigographies and
 setlists are supported.
 
 Getting a connection
@@ -59,6 +59,38 @@ See TODO for pagination plans.
     	print event.display_name	# Coltrane Motion at Arlene's Grocery (June 2, 2010)
 	print event.location.city	# New York, NY, US
 	print event.venue.display_name	# Arlene's Grocery
+
+Querying for gigographies
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``Songkick.gigography`` provides access to Songkick's gigography search.
+
+Gigography querying supports the following parameters:
+
+- ``artist_id``, the Songkick-given artist id
+- ``musicbrainz_id``, a MusicBrainz id. If ``musicbrainz_id`` is
+given, no other artist-related query parameters are respected.
+- ``order``, the result ordering type, ``desc`` or ``asc`` (default value).
+
+Pagination is handled with the following parameters:
+
+- ``per_page``, the number of objects per page. 50 max.
+- ``page``, the page number you'd like.
+
+See TODO for pagination plans.
+
+::
+
+::
+   
+    # query for latest Dropkick Musphys motion events
+    events = songkick.gigography.query(artist_id='211206')
+    
+    # iterate over the list of events
+    for event in events:
+    	print event.display_name
+	    print event.location.city
+	    print event.venue.display_name
 
 
 Querying for setlists

@@ -68,8 +68,8 @@ Querying for gigographies
 Gigography querying supports the following parameters:
 
 - ``artist_id``, the Songkick-given artist id
-- ``musicbrainz_id``, a MusicBrainz id. If ``musicbrainz_id`` is
-given, no other artist-related query parameters are respected.
+- ``musicbrainz_id``, a MusicBrainz id. If ``musicbrainz_id`` is 
+  given, no other artist-related query parameters are respected.
 - ``order``, the result ordering type, ``desc`` or ``asc`` (default value).
 
 Pagination is handled with the following parameters:
@@ -78,8 +78,6 @@ Pagination is handled with the following parameters:
 - ``page``, the page number you'd like.
 
 See TODO for pagination plans.
-
-::
 
 ::
    

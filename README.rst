@@ -81,8 +81,8 @@ See TODO for pagination plans.
 
 ::
    
-    # query for latest Dropkick Musphys motion events
-    events = songkick.gigography.query(artist_id='211206')
+    # query for latest Dropkick Musphys events
+    events = songkick.gigography.query(artist_id='211206', order='desc')
     
     # iterate over the list of events
     for event in events:

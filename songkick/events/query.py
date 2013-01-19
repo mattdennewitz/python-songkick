@@ -26,7 +26,7 @@ class GigographyQuery(EventQuery):
         "Generate the API resource path"
 
         if 'musicbrainz_id' in self._query:
-            return 'artists/mbid:%s/events.json' % \
+            return 'artists/mbid:%s/gigography.json' % \
                    self._query.pop('musicbrainz_id')
         return 'artists/%s/gigography.json' % \
                 self._query.pop('artist_id')

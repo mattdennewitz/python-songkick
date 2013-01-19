@@ -3,7 +3,7 @@ import urlparse
 
 import httplib2
 
-from songkick.events.query import EventQuery
+from songkick.events.query import EventQuery, GigographyQuery
 from songkick.exceptions import SongkickRequestError
 from songkick.setlists.query import SetlistQuery
 
@@ -54,6 +54,10 @@ class SongkickConnection(object):
     @property
     def events(self):
         return EventQuery(self)
+
+    @property
+    def gigography(self):
+        return GigographyQuery(self)
 
     @property
     def setlists(self):
